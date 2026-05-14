@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+message: "If you use this code or its results, please cite both this repository and the TLM:UAV dataset."
+title: "TLM-UAV Quantum Anomaly Detection: Reproducible Benchmark of Classical, Quantum, and Hybrid Detectors on the TLM:UAV Telemetry Dataset"
+abstract: >
+  Code, figures, and aggregated experimental results for the study of quantum
+  machine learning applied to UAV cyber-physical anomaly detection on the
+  TLM:UAV dataset, under a leakage-free, group-aware temporal protocol (B2)
+  with explicit contextual-proxy auditing.
+type: software
+authors:
+  - family-names: "Durán Paredes"
+    given-names: "Carlos A."
+    affiliation: "Universidad del Cauca"
+    email: "caduran@unicauca.edu.co"
+  - family-names: "Díaz"
+    given-names: "German Darío"
+    affiliation: "Universidad del Cauca"
+    email: "germandiaz@unicauca.edu.co"
+license: CC-BY-NC-SA-4.0
+repository-code: "https://github.com/Carlosandp/TLM-UAV-Quantum-Anomaly-Detection"
+keywords:
+  - quantum machine learning
+  - data re-uploading
+  - anomaly detection
+  - UAV
+  - cyber-physical systems
+  - Qiskit
+references:
+  - type: article
+    title: "Acquisition and Processing of UAV Fault Data Based on Time Line Modeling Method"
+    authors:
+      - family-names: "Yang"
+        given-names: "T."
+      - family-names: "Lu"
+        given-names: "Y."
+      - family-names: "Deng"
+        given-names: "H."
+      - family-names: "Chen"
+        given-names: "J."
+      - family-names: "Tang"
+        given-names: "X."
+    journal: "Applied Sciences"
+    year: 2023
+    volume: 13
+    issue: 7
+    start: 4301
+    doi: "10.3390/app13074301"

@@ -1,0 +1,29 @@
+# Core scientific stack
+numpy>=1.26,<3
+pandas>=2.0,<4
+scipy>=1.11
+
+# Classical ML
+scikit-learn>=1.4
+xgboost>=2.0
+imbalanced-learn>=0.12
+
+# Quantum stack (Qiskit 2.x)
+qiskit>=2.0,<3
+qiskit-aer>=0.14
+qiskit-machine-learning>=0.8
+
+# Data-Re-Uploading classifier (sklearn-compatible, Qiskit 2.x)
+# Pinned to a specific upstream commit for full reproducibility.
+qiskit-data-reuploading @ git+https://github.com/Carlosandp/qiskit-data-reuploading.git@201cbf5fbb01996829bd8efed4e38e16b52434ca
+
+# Statistical tests (McNemar in §16)
+statsmodels>=0.14
+
+# Plotting
+matplotlib>=3.7
+seaborn>=0.13
+
+# Notebook
+jupyter>=1.0
+ipykernel>=6.0
