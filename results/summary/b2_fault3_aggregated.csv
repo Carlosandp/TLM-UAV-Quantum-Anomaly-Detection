@@ -1,0 +1,4 @@
+mode,balanced_acc_mean,balanced_acc_std,f1_macro_mean,f1_macro_std,mcc_mean,mcc_std,roc_auc_ovr_mean,roc_auc_ovr_std,pr_auc_mean,pr_auc_std,accuracy_mean,accuracy_std,far_class0_mean,far_class0_std,dr_anomaly_mean,dr_anomaly_std
+full,0.9636,,0.9327,,0.8739,,0.997,,0.9825,,0.9457,,0.0,,1.0,
+no_proxy_loose,0.9636,,0.9327,,0.8739,,0.9999,,0.9994,,0.9457,,0.0,,1.0,
+no_proxy_strict,0.5,,0.4275,,0.0,,0.9555,,0.8029,,0.7466,,1.0,,0.0,

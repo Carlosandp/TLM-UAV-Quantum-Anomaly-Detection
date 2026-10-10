@@ -1,0 +1,151 @@
+seed,mode,model,group,n,detected
+0,full,LogReg,event partly seen in training,591,582
+0,full,SVM-RBF,event partly seen in training,591,10
+0,full,RandomForest,event partly seen in training,591,584
+0,full,MLP,event partly seen in training,591,583
+0,full,XGBoost,event partly seen in training,591,591
+0,no_proxy_strict,LogReg,event partly seen in training,591,373
+0,no_proxy_strict,SVM-RBF,event partly seen in training,591,3
+0,no_proxy_strict,RandomForest,event partly seen in training,591,591
+0,no_proxy_strict,MLP,event partly seen in training,591,559
+0,no_proxy_strict,XGBoost,event partly seen in training,591,584
+1,full,LogReg,event partly seen in training,402,398
+1,full,LogReg,event unseen in training,481,0
+1,full,SVM-RBF,event partly seen in training,402,394
+1,full,SVM-RBF,event unseen in training,481,0
+1,full,RandomForest,event partly seen in training,402,401
+1,full,RandomForest,event unseen in training,481,0
+1,full,MLP,event partly seen in training,402,399
+1,full,MLP,event unseen in training,481,257
+1,full,XGBoost,event partly seen in training,402,334
+1,full,XGBoost,event unseen in training,481,0
+1,no_proxy_strict,LogReg,event partly seen in training,402,331
+1,no_proxy_strict,LogReg,event unseen in training,481,0
+1,no_proxy_strict,SVM-RBF,event partly seen in training,402,0
+1,no_proxy_strict,SVM-RBF,event unseen in training,481,0
+1,no_proxy_strict,RandomForest,event partly seen in training,402,402
+1,no_proxy_strict,RandomForest,event unseen in training,481,0
+1,no_proxy_strict,MLP,event partly seen in training,402,373
+1,no_proxy_strict,MLP,event unseen in training,481,0
+1,no_proxy_strict,XGBoost,event partly seen in training,402,402
+1,no_proxy_strict,XGBoost,event unseen in training,481,78
+2,full,LogReg,event partly seen in training,311,295
+2,full,LogReg,event unseen in training,206,0
+2,full,SVM-RBF,event partly seen in training,311,311
+2,full,SVM-RBF,event unseen in training,206,0
+2,full,RandomForest,event partly seen in training,311,272
+2,full,RandomForest,event unseen in training,206,0
+2,full,MLP,event partly seen in training,311,305
+2,full,MLP,event unseen in training,206,0
+2,full,XGBoost,event partly seen in training,311,311
+2,full,XGBoost,event unseen in training,206,0
+2,no_proxy_strict,LogReg,event partly seen in training,311,311
+2,no_proxy_strict,LogReg,event unseen in training,206,91
+2,no_proxy_strict,SVM-RBF,event partly seen in training,311,311
+2,no_proxy_strict,SVM-RBF,event unseen in training,206,192
+2,no_proxy_strict,RandomForest,event partly seen in training,311,311
+2,no_proxy_strict,RandomForest,event unseen in training,206,60
+2,no_proxy_strict,MLP,event partly seen in training,311,309
+2,no_proxy_strict,MLP,event unseen in training,206,24
+2,no_proxy_strict,XGBoost,event partly seen in training,311,311
+2,no_proxy_strict,XGBoost,event unseen in training,206,0
+3,full,LogReg,event unseen in training,594,306
+3,full,SVM-RBF,event unseen in training,594,195
+3,full,RandomForest,event unseen in training,594,58
+3,full,MLP,event unseen in training,594,86
+3,full,XGBoost,event unseen in training,594,66
+3,no_proxy_strict,LogReg,event unseen in training,594,0
+3,no_proxy_strict,SVM-RBF,event unseen in training,594,83
+3,no_proxy_strict,RandomForest,event unseen in training,594,6
+3,no_proxy_strict,MLP,event unseen in training,594,0
+3,no_proxy_strict,XGBoost,event unseen in training,594,0
+4,full,LogReg,event unseen in training,189,0
+4,full,SVM-RBF,event unseen in training,189,0
+4,full,RandomForest,event unseen in training,189,0
+4,full,MLP,event unseen in training,189,0
+4,full,XGBoost,event unseen in training,189,0
+4,no_proxy_strict,LogReg,event unseen in training,189,0
+4,no_proxy_strict,SVM-RBF,event unseen in training,189,0
+4,no_proxy_strict,RandomForest,event unseen in training,189,0
+4,no_proxy_strict,MLP,event unseen in training,189,0
+4,no_proxy_strict,XGBoost,event unseen in training,189,0
+5,full,LogReg,event partly seen in training,283,273
+5,full,LogReg,event unseen in training,481,103
+5,full,SVM-RBF,event partly seen in training,283,279
+5,full,SVM-RBF,event unseen in training,481,0
+5,full,RandomForest,event partly seen in training,283,283
+5,full,RandomForest,event unseen in training,481,0
+5,full,MLP,event partly seen in training,283,244
+5,full,MLP,event unseen in training,481,270
+5,full,XGBoost,event partly seen in training,283,283
+5,full,XGBoost,event unseen in training,481,0
+5,no_proxy_strict,LogReg,event partly seen in training,283,263
+5,no_proxy_strict,LogReg,event unseen in training,481,0
+5,no_proxy_strict,SVM-RBF,event partly seen in training,283,283
+5,no_proxy_strict,SVM-RBF,event unseen in training,481,0
+5,no_proxy_strict,RandomForest,event partly seen in training,283,274
+5,no_proxy_strict,RandomForest,event unseen in training,481,0
+5,no_proxy_strict,MLP,event partly seen in training,283,199
+5,no_proxy_strict,MLP,event unseen in training,481,0
+5,no_proxy_strict,XGBoost,event partly seen in training,283,283
+5,no_proxy_strict,XGBoost,event unseen in training,481,0
+6,full,LogReg,event partly seen in training,395,335
+6,full,SVM-RBF,event partly seen in training,395,395
+6,full,RandomForest,event partly seen in training,395,395
+6,full,MLP,event partly seen in training,395,395
+6,full,XGBoost,event partly seen in training,395,395
+6,no_proxy_strict,LogReg,event partly seen in training,395,372
+6,no_proxy_strict,SVM-RBF,event partly seen in training,395,373
+6,no_proxy_strict,RandomForest,event partly seen in training,395,368
+6,no_proxy_strict,MLP,event partly seen in training,395,388
+6,no_proxy_strict,XGBoost,event partly seen in training,395,374
+7,full,LogReg,event partly seen in training,472,421
+7,full,SVM-RBF,event partly seen in training,472,442
+7,full,RandomForest,event partly seen in training,472,472
+7,full,MLP,event partly seen in training,472,423
+7,full,XGBoost,event partly seen in training,472,455
+7,no_proxy_strict,LogReg,event partly seen in training,472,354
+7,no_proxy_strict,SVM-RBF,event partly seen in training,472,444
+7,no_proxy_strict,RandomForest,event partly seen in training,472,396
+7,no_proxy_strict,MLP,event partly seen in training,472,374
+7,no_proxy_strict,XGBoost,event partly seen in training,472,230
+8,full,LogReg,event partly seen in training,184,110
+8,full,LogReg,event unseen in training,189,0
+8,full,SVM-RBF,event partly seen in training,184,181
+8,full,SVM-RBF,event unseen in training,189,0
+8,full,RandomForest,event partly seen in training,184,149
+8,full,RandomForest,event unseen in training,189,0
+8,full,MLP,event partly seen in training,184,123
+8,full,MLP,event unseen in training,189,0
+8,full,XGBoost,event partly seen in training,184,149
+8,full,XGBoost,event unseen in training,189,0
+8,no_proxy_strict,LogReg,event partly seen in training,184,134
+8,no_proxy_strict,LogReg,event unseen in training,189,0
+8,no_proxy_strict,SVM-RBF,event partly seen in training,184,177
+8,no_proxy_strict,SVM-RBF,event unseen in training,189,0
+8,no_proxy_strict,RandomForest,event partly seen in training,184,99
+8,no_proxy_strict,RandomForest,event unseen in training,189,0
+8,no_proxy_strict,MLP,event partly seen in training,184,95
+8,no_proxy_strict,MLP,event unseen in training,189,0
+8,no_proxy_strict,XGBoost,event partly seen in training,184,114
+8,no_proxy_strict,XGBoost,event unseen in training,189,0
+9,full,LogReg,event partly seen in training,311,311
+9,full,LogReg,event unseen in training,189,0
+9,full,SVM-RBF,event partly seen in training,311,311
+9,full,SVM-RBF,event unseen in training,189,0
+9,full,RandomForest,event partly seen in training,311,311
+9,full,RandomForest,event unseen in training,189,0
+9,full,MLP,event partly seen in training,311,296
+9,full,MLP,event unseen in training,189,0
+9,full,XGBoost,event partly seen in training,311,311
+9,full,XGBoost,event unseen in training,189,0
+9,no_proxy_strict,LogReg,event partly seen in training,311,311
+9,no_proxy_strict,LogReg,event unseen in training,189,0
+9,no_proxy_strict,SVM-RBF,event partly seen in training,311,311
+9,no_proxy_strict,SVM-RBF,event unseen in training,189,0
+9,no_proxy_strict,RandomForest,event partly seen in training,311,311
+9,no_proxy_strict,RandomForest,event unseen in training,189,0
+9,no_proxy_strict,MLP,event partly seen in training,311,311
+9,no_proxy_strict,MLP,event unseen in training,189,1
+9,no_proxy_strict,XGBoost,event partly seen in training,311,311
+9,no_proxy_strict,XGBoost,event unseen in training,189,0

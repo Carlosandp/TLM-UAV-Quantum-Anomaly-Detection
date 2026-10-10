@@ -2,10 +2,12 @@ cff-version: 1.2.0
 message: "If you use this code or its results, please cite both this repository and the TLM:UAV dataset."
 title: "TLM-UAV Quantum Anomaly Detection: Reproducible Benchmark of Classical, Quantum, and Hybrid Detectors on the TLM:UAV Telemetry Dataset"
 abstract: >
-  Code, figures, and aggregated experimental results for the study of quantum
-  machine learning applied to UAV cyber-physical anomaly detection on the
-  TLM:UAV dataset, under a leakage-free, group-aware temporal protocol (B2)
-  with explicit contextual-proxy auditing.
+  Code, figures, and results for a case study on evaluating machine-learning
+  anomaly detectors for UAV telemetry on the TLM:UAV benchmark of simulated
+  faults, under a group-aware blocked temporal evaluation with an audit of
+  contextual proxy variables. A simulated data re-uploading quantum circuit
+  and a hybrid quantum-classical model serve as the worked example. The
+  results do not demonstrate a quantum advantage.
 type: software
 authors:
   - family-names: "Durán Paredes"

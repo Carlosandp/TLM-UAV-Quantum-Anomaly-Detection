@@ -1,0 +1,21 @@
+\begin{tabular}{llcccc}
+\toprule
+Model & Inputs & F1 with & F1 without & AUC with & AUC without \\
+\midrule
+Logistic regression & all & 0.650 & 0.643 & 0.655 & 0.650 \\
+Logistic regression & reduced & 0.649 & 0.649 & 0.660 & 0.660 \\
+Logistic regression & physical & 0.506 & 0.508 & 0.551 & 0.542 \\
+MLP & all & 0.641 & 0.638 & 0.693 & 0.671 \\
+MLP & reduced & 0.651 & 0.659 & 0.679 & 0.680 \\
+MLP & physical & 0.528 & 0.531 & 0.619 & 0.617 \\
+Random forest & all & 0.564 & 0.557 & 0.786 & 0.775 \\
+Random forest & reduced & 0.566 & 0.564 & 0.773 & 0.781 \\
+Random forest & physical & 0.545 & 0.538 & 0.731 & 0.715 \\
+SVM & all & 0.577 & 0.575 & 0.670 & 0.667 \\
+SVM & reduced & 0.584 & 0.583 & 0.683 & 0.680 \\
+SVM & physical & 0.462 & 0.469 & 0.581 & 0.581 \\
+XGBoost & all & 0.521 & 0.504 & 0.669 & 0.657 \\
+XGBoost & reduced & 0.538 & 0.522 & 0.704 & 0.706 \\
+XGBoost & physical & 0.524 & 0.516 & 0.669 & 0.648 \\
+\bottomrule
+\end{tabular}

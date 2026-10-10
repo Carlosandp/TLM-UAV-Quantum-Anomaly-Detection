@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Local data (full dataset is NOT committed; only data/sample/ is tracked)
+data/dataset/
+data/raw/
+data/processed/
+data/*.csv
+!data/sample/
+!data/sample/**
+
+# Local results (large pickles, per-run CSVs)
+results/**/*.pkl
+results/**/*.pickle
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Coverage / testing
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+
+# Environment
+.env
+.env.local
+
+# Revision scratch and tool artifacts
+revision/results/_nb_scratch/
+revision/supplement_tables/numbers.json
+ruvector.db
+*.aux
+*.log
+*.out
+revision/results/_stdout_*

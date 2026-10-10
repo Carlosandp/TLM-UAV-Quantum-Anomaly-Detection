@@ -2,104 +2,85 @@
 
 ## 1. Environment
 
-- **Python.** 3.10 or newer (tested on 3.12).
-- **OS.** Tested on macOS 14+. Linux should work identically; on
-  Windows, prefer WSL2 for matching SciPy/qiskit-aer behaviour.
-- **Dependencies.** Pinned in [`requirements.txt`](../requirements.txt).
-  The DRU package is installed from a **specific commit SHA** of
-  `Carlosandp/qiskit-data-reuploading` to guarantee bit-for-bit
-  reproducibility of circuit construction.
+The stored results and the revision analyses were produced with:
 
-### Install
+| Package | Version |
+|---|---|
+| Python | 3.12.10 |
+| numpy | 2.4.4 |
+| pandas | 2.3.3 |
+| scikit-learn | 1.8.0 |
+| imbalanced-learn | 0.14.1 |
+| xgboost | 3.2.0 |
+| scipy | 1.17.1 |
+| qiskit | 2.3.0 |
+| qiskit-data-reuploading (`qdr`) | 0.1.0 (commit pinned in `requirements.txt`) |
+
+Host: Apple M5 laptop, 10 cores, 16 GB RAM, macOS 27.
 
 ```bash
 git clone https://github.com/Carlosandp/TLM-UAV-Quantum-Anomaly-Detection.git
 cd TLM-UAV-Quantum-Anomaly-Detection
-python -m venv .venv
-source .venv/bin/activate    # Windows: .venv\Scripts\activate
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+python examples/minimal_example.py     # smoke test on synthetic data
 ```
 
-### Verify
+## 2. Data and paths
+
+The pipeline reads the **raw per-sensor folders** of TLM:UAV, not
+`Fusion_Data.csv` (see [`data/README.md`](../data/README.md)).
+
+| Variable | Meaning | Default |
+|---|---|---|
+| `TLM_UAV_ROOT` | repository root | current directory (notebook) / detected (scripts) |
+| `TLM_DATASET_DIR` | folder containing `ATT/`, `BARO/`, `BAT/`, ... | `<root>/data/dataset` |
+| `TLM_RESULT_DIR` | notebook output folder | `<root>/results` |
+| `TLM_REV_DIR` | revision output folder | `<root>/revision/results` |
+
+## 3. Main pipeline
 
 ```bash
-python examples/minimal_example.py
-```
-
-Expected output: a trained DRU classifier reporting a training accuracy
-≥ 0.85 on a synthetic linearly-separable dataset.
-
-## 2. Path configuration
-
-The notebook resolves all data, results, and figure locations from a
-single root, controlled by the `TLM_UAV_ROOT` environment variable.
-If it is unset, the current working directory is used.
-
-```python
-from pathlib import Path
-import os
-
-ROOT = Path(os.environ.get("TLM_UAV_ROOT", Path.cwd()))
-DATA_DIR    = ROOT / "data"
-RESULTS_DIR = ROOT / "results"
-FIGURES_DIR = ROOT / "figures"
-```
-
-To reproduce against an out-of-tree data location:
-
-```bash
-export TLM_UAV_ROOT=/path/to/your/working/copy
 jupyter notebook notebooks/TLM_DRU_FINAL.ipynb
 ```
 
-The notebook expects `data/dataset/Fusion_Data.csv` under `ROOT`. See
-[`data/README.md`](../data/README.md) for the file specification and
-SHA-256 checksum.
+- Seeds 0–9 select the block assignment; every estimator receives an
+  explicit `random_state`.
+- 150 classical runs (about 1 min), 30 circuit fits (225–241 s each, 117 min
+  in total), 180 hybrid runs (about 2 min). The quantum-kernel section is
+  disabled.
+- The notebook writes `results/*` and overwrites `results/experiment.log`.
 
-## 3. Determinism
+## 4. Revision analyses
 
-- **Seeds.** 10 seeds: `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`. Set via
-  `numpy.random.seed`, `random.seed`, scikit-learn `random_state`, and
-  the `seed_simulator` argument of `qiskit-aer`.
-- **SMOTETomek.** Each (seed, fold) pair seeds the resampler
-  independently.
-- **DRU optimiser (COBYLA).** Deterministic given the parameter init,
-  which is seeded.
-- **XGBoost.** `n_jobs=1` for determinism (the notebook sets this).
+```bash
+export TLM_DATASET_DIR=/path/to/dataset
+cd revision/scripts
+python rev_classical.py
+python rev_events.py
+python rev_dru.py d1
+python rev_dru.py d2
+python rev_figures.py
+python rev_supplement_tables.py
+```
 
-Even with all seeds fixed, results may differ by ~1e-3 across
-platforms due to BLAS implementation differences. This does not change
-the qualitative ranking of models.
+These scripts execute the notebook's own data-building, split, and
+preparation cells unmodified and never overwrite `results/`. Measured run
+times and exit codes of the last complete run are in
+[`revision/results/run_log.txt`](../revision/results/run_log.txt).
 
-## 4. Runtime expectations
+## 5. What has been verified
 
-Approximate wall-clock for the full notebook on a 2023 MacBook Pro
-(M2 Pro, 16 GB):
+- **Classical results.** Rerunning the notebook code reproduces all 150 stored
+  classical runs exactly (maximum absolute difference in F1, ROC AUC, and
+  `far_class0`: about 1e-16).
+- **Circuit.** The stored fit for seed 0, physical-only inputs, was repeated
+  and reproduced exactly (F1 0.1362, ROC AUC 0.0190).
+- **Hybrid control.** The stored `XGB-raw` results are reproduced exactly (30
+  of 30 runs).
+- **Not re-run.** The remaining 29 stored circuit fits and the hybrid
+  variants that depend on them were not repeated; they are taken from the
+  stored files.
 
-| Stage                                  | Time           |
-|----------------------------------------|----------------|
-| EDA + proxy audit                      | ~1 min         |
-| Classical baselines × 5 × 3 modes      | ~10 min        |
-| DRU (5 qubits, 2 layers) × 10 seeds    | ~90 min        |
-| QSVC × 10 seeds                        | ~30 min        |
-| Hybrid heads × 6 × 10 seeds            | ~25 min        |
-| Aggregation + figures                  | ~1 min         |
-| **Total**                              | **~2.5–3 h**   |
-
-The DRU stage dominates and runs on the Aer state-vector simulator.
-GPU is not used. Memory peak is ~3 GB.
-
-## 5. Outputs
-
-Running the notebook end-to-end regenerates:
-
-- `results/eda/*.csv`
-- `results/classical/*.csv`
-- `results/quantum/*.csv`
-- `results/hybrid/*.csv`
-- `results/summary/final_comparison_*.csv`
-- `results/summary/quantum_advantage_report.md`
-- `figures/*.png`
-
-The committed copies of these files are the reference output for the
-manuscript.
+Cross-platform differences in BLAS may change results slightly on other
+machines.

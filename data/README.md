@@ -1,87 +1,57 @@
-# Dataset — TLM:UAV (Fusion_Data.csv)
+# Data — TLM:UAV
 
-This repository does **not** redistribute the full `Fusion_Data.csv` file.
-A 100-row sample is provided in [`sample/Fusion_Data_sample.csv`](sample/Fusion_Data_sample.csv)
-for smoke-testing the pipeline (column schema, types, label encoding).
+The full data set is **not** redistributed in this repository.
 
 ## 1. Source
-
-The dataset is derived from the publicly released TLM:UAV software-in-the-loop
-telemetry corpus:
 
 > Yang, T., Lu, Y., Deng, H., Chen, J., & Tang, X. (2023).
 > *Acquisition and Processing of UAV Fault Data Based on Time Line Modeling
 > Method.* **Applied Sciences**, 13(7), 4301.
 > https://doi.org/10.3390/app13074301
 
-The article is published Open Access under **CC BY 4.0**, which permits
-redistribution with attribution. The 100-row sample committed here is
-provided under the same CC BY 4.0 terms inherited from the source.
+Obtain the data from the authors' public release and keep its folder layout.
 
-## 2. How to obtain the full dataset
+## 2. What the pipeline reads
 
-The full processed file used in this study is `Fusion_Data.csv`
-(12,253 rows + 1 header line). Obtain it via one of the following routes:
-
-1. **Authors' release.** Follow the data-availability statement of the
-   TLM:UAV article (DOI above) and download the supplementary archive.
-2. **Local preprocessing.** Concatenate and align the per-sensor CSVs
-   (`ATT`, `BARO`, `BAT`, `CTUN`, `GPS`, `IMU`, `MAG`, `MOTB`, `PSCD`,
-   `RATE`, `VIBE`, `XKF1`) on the `timestamp` column following the
-   pipeline described in the article. The output schema must match the
-   columns listed below.
-
-Place the resulting file at:
+The notebook and the revision scripts read the **raw per-sensor files**:
 
 ```
-data/dataset/Fusion_Data.csv
+<TLM_DATASET_DIR>/
+├── ATT/ALL_FAIL_LOG_ATT.csv
+├── BARO/ALL_FAIL_LOG_BARO.csv
+├── BAT/ALL_FAIL_LOG_BAT_0.csv
+├── CTUN/ALL_FAIL_LOG_CTUN.csv
+├── GPS/ALL_FAIL_LOG_GPS_0.csv
+├── IMU/ALL_FAIL_LOG_IMU_0_Random.csv
+├── MAG/ALL_FAIL_LOG_MAG_0.csv
+├── MOTB/ALL_FAIL_LOG_MOTB.csv
+├── PSCD/ALL_FAIL_LOG_PSCD.csv
+├── RATE/ALL_FAIL_LOG_RATE.csv
+├── VIBE/ALL_FAIL_LOG_VIBE_0_Random.csv
+└── XKF1/ALL_FAIL_LOG_XKF1_0_Random.csv
 ```
 
-(this path is the default expected by the notebook when `TLM_UAV_ROOT`
-is the repository root; see `docs/reproducibility.md`).
+`TLM_DATASET_DIR` defaults to `data/dataset/` under the repository root. The
+merged working table (4,817 rows, 72 numeric variables after dropping
+constant columns) is rebuilt from these files on every run.
 
-## 3. Expected schema
+Labels: `0` nominal; `1` GPS fault; `2` accelerometer fault; `3` engine
+fault; `4` remote-control fault. The mapping was checked against the signals
+(see `docs/methodology.md`). The faults are simulated; the data contain no
+attacks.
 
-19 columns, all numeric. Header (exact order):
+## 3. `Fusion_Data.csv` is not the experimental source
 
-```
-timestamp, DesRoll, Roll, DesPitch, Pitch, DesYaw, Yaw, ErrRP, ErrYaw,
-MagX, MagY, MagZ, abGyrX, abGyrY, abGyrZ, abAccX, abAccY, abAccZ, labels
-```
+The release also contains a ready-made merged table, `Fusion_Data.csv`
+(12,253 rows, 17 features). It is **not used** for any result in this
+repository. An audit found two pairs of exactly duplicated columns in it
+(`ErrRP`/`ErrYaw` and `MagY`/`MagZ`) that are not duplicates in the raw
+sensor files.
 
-- `timestamp` — microseconds since boot (used for group-aware temporal
-  splitting under the B2 protocol; **never used as a feature**).
-- 17 numeric telemetry features (attitude setpoints, attitude estimates,
-  magnetometer, gyro bias, accelerometer bias).
-- `labels` — integer in `{0, 1, 2, 3, 4}`:
-  - `0` — Normal (≈ 53.6 % of rows)
-  - `1`–`4` — Distinct fault-injection classes (imbalance ratio ≈ 11.9×)
-
-For the binary task used in the main benchmark, labels `1`–`4` are
-collapsed into a single `anomaly` class.
-
-## 4. Integrity check
-
-The exact file used in this study has the following SHA-256:
+[`sample/Fusion_Data_sample.csv`](sample/Fusion_Data_sample.csv) holds the
+first 100 rows of that table as a format reference only. SHA-256 of the full
+file that was audited:
 
 ```
 e17dc97292bbf32f96424902a78c64d23b8185fe6002d5f008a4d7f813244465  Fusion_Data.csv
 ```
-
-Verify with:
-
-```bash
-shasum -a 256 data/dataset/Fusion_Data.csv
-```
-
-If your hash differs, the preprocessing or alignment may not match the
-one used in the paper; results may not be numerically reproducible (but
-the pipeline will still run).
-
-## 5. Sample file
-
-[`sample/Fusion_Data_sample.csv`](sample/Fusion_Data_sample.csv) contains
-the first 100 data rows of `Fusion_Data.csv` (all label `0`, since
-faults appear later in the temporal sequence). It is intended only as a
-schema/format reference and for smoke-testing, **not** for training or
-evaluation.
