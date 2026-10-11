@@ -211,9 +211,16 @@ although the ROC AUC stayed at 0.96. A single partition supports no
 estimate and is reported only as an anecdote.
 
 \section{Reproducibility}
-The stored results were reproduced exactly by rerunning the notebook code:
-all 150 classical runs and the circuit fit that was repeated
-(Table~\ref{tab:cost}). Scripts, per-partition outputs, software versions,
+Every stored result that was rerun was reproduced exactly: all 150
+classical runs, the 30 runs of the five-variable XGBoost control, and one
+circuit fit (seed~0, \emph{physical} inputs; Table~\ref{tab:cost}). The other
+29 circuit fits of the main study, and the hybrid variants that depend on
+them, were not rerun. The circuit and hybrid rows of
+Tables~\ref{tab:f1}--\ref{tab:miss} and the comparisons in
+Table~\ref{tab:wins} are therefore computed from the stored per-partition
+files of the original study; the false-alarm rate in those rows is derived
+arithmetically from two stored columns. All other tables come from analyses
+executed for this revision. Scripts, per-partition outputs, software versions,
 and commands are in the public repository
 \url{https://github.com/Carlosandp/TLM-UAV-Quantum-Anomaly-Detection}
 (folder \texttt{revision/}).

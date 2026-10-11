@@ -40,6 +40,20 @@ Versions, run times, and exit codes of the last complete run:
 | `D2_strict_no_resampling_dru_hybrid_*` | Circuit, six hybrids, and two added controls trained on real rows only (physical-only inputs) |
 | `revision_classical_log.txt`, `run_log.txt` | Console log and run record |
 
+## What was rerun and what comes from stored results
+
+- Computed by these scripts from the raw sensor logs: `A0`–`A4b`, `A6`, `A7`,
+  `D1`, `D2`. `A0` reproduces the 150 stored classical runs exactly, step 4 of
+  `A6` reproduces the 30 stored `XGB-raw` runs exactly, and `D1` reproduces one
+  stored circuit fit exactly (seed 0, physical-only inputs).
+- Derived from the stored per-run files in `results/` without re-execution:
+  the three `A5` files. The other 29 circuit fits of the main study and the
+  hybrid variants that depend on them were **not** rerun. Their F1, ROC AUC,
+  and miss rate are the stored values; their false-alarm rate is computed as
+  `2*far_macro - far_class0`.
+- `D2` is a new analysis (ten circuit fits without synthetic rows,
+  physical-only inputs), not a repetition of stored results.
+
 ## Reading the results
 
 - The ten partitions reshuffle ten time blocks of **one** log with **four**
