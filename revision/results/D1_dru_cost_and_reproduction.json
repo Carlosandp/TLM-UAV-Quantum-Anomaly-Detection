@@ -1,0 +1,56 @@
+{
+  "config": {
+    "seed": 0,
+    "mode": "no_proxy_strict",
+    "n_train_A": 800,
+    "n_test": 964,
+    "n_qubits": 5,
+    "n_trainable": 30,
+    "depth": 16,
+    "gate_counts": {
+      "rx": 10,
+      "ry": 10,
+      "rz": 10,
+      "cx": 10
+    },
+    "optimizer": "COBYLA",
+    "max_iter": 200,
+    "estimator": "StatevectorEstimator",
+    "shots": null
+  },
+  "host": {
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "processor": "Apple M5, 10 cores, 16 GB RAM",
+    "python": "3.12.10",
+    "qiskit": "2.3.0",
+    "scipy": "1.17.1",
+    "numpy": "2.4.4"
+  },
+  "fit": {
+    "wall_clock_s": 227.8,
+    "loss_evaluations": 328,
+    "circuit_evaluations": 262400,
+    "loss_first": 1.0072,
+    "loss_last": 0.6327,
+    "loss_min": 0.632,
+    "n_loss_history": 200,
+    "stored_wall_clock_s": 229.9
+  },
+  "reproduction": {
+    "f1_macro": 0.1362234256971099,
+    "f1_macro_stored": 0.1362234256971099,
+    "balanced_acc": 0.1279695885104086,
+    "balanced_acc_stored": 0.1279695885104086,
+    "roc_auc": 0.018961817794169025,
+    "roc_auc_stored": 0.018961817794169
+  },
+  "inference": {
+    "batch_test_fold_s_median": 0.829,
+    "per_sample_in_batch_ms": 0.86,
+    "single_sample_dru_ms_median": 1.28,
+    "single_sample_dru_ms_p95": 1.48,
+    "single_sample_hybrid_ms_median": 1.62,
+    "single_sample_hybrid_ms_p95": 1.86,
+    "single_sample_xgb_only_ms_median": 0.25
+  }
+}

@@ -1,0 +1,18 @@
+\begin{tabular}{lccc}
+\toprule
+Model & all & reduced & physical \\
+\midrule
+Logistic regression & 0.16 (0.16) & 0.16 (0.16) & 0.31 (0.30) \\
+SVM & 0.16 (0.18) & 0.16 (0.16) & 0.32 (0.30) \\
+MLP & 0.21 (0.17) & 0.17 (0.17) & 0.26 (0.28) \\
+Random forest & 0.26 (0.31) & 0.27 (0.29) & 0.27 (0.29) \\
+XGBoost & 0.39 (0.33) & 0.38 (0.31) & 0.28 (0.30) \\
+DRU circuit alone & 0.33 (0.32) & 0.36 (0.40) & 0.42 (0.28) \\
+XGB only (5 variables) & 0.50 (0.53) & 0.29 (0.34) & 0.26 (0.30) \\
+XGB + principal components & 0.37 (0.48) & 0.25 (0.35) & 0.36 (0.30) \\
+XGB + polynomial terms & 0.44 (0.49) & 0.43 (0.41) & 0.28 (0.29) \\
+XGB + random RBF features & 0.20 (0.35) & 0.25 (0.33) & 0.34 (0.29) \\
+XGB + untrained DRU output & 0.40 (0.52) & 0.34 (0.40) & 0.29 (0.32) \\
+XGB + trained DRU output & 0.34 (0.39) & 0.32 (0.34) & 0.34 (0.30) \\
+\bottomrule
+\end{tabular}

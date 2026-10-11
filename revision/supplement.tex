@@ -1,0 +1,227 @@
+% Supplementary Material for manuscript AESM-2026-0104 (revised).
+% All tables are generated from the stored result files by
+% Code/revision_analysis/rev_supplement_tables.py; no value is typed by hand.
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs,array,graphicx,amsmath}
+\usepackage[hidelinks]{hyperref}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thesection}{S\arabic{section}}
+\newcommand{\T}[1]{\input{supplement_tables/#1}}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\title{Supplementary Material\\[4pt]\large Quantum Machine Learning for Cyber-Physical Anomaly Detection in
+Unmanned Aerial Vehicles: Lessons from a Proxy-Audited Temporal Evaluation}
+\author{C.~A.~Dur\'an~Paredes, J.~E.~Le\'on~Calder\'on, N.~S\'anchez~Perea, G.~D.~D\'iaz, and C.~Segura}
+\date{}
+\begin{document}
+\maketitle
+
+This document holds the detailed tables behind the article. Unless noted,
+values are means with standard deviations in parentheses over the ten
+partitions (``seeds'') of the same log. The standard deviation measures
+sensitivity to the choice of partition. It is not a confidence interval for
+performance on an independent flight. \emph{all}, \emph{reduced}, and
+\emph{physical} denote the three input sets (72, 63, and 22 variables).
+The false-alarm rate is the fraction of nominal samples flagged as faults;
+the miss rate is the fraction of fault samples labeled nominal. All models
+use default decision thresholds.
+
+\section{Data, labels, and partitions}
+The table rebuilt from the raw sensor files has 4\,817 rows (about 10\,Hz)
+and 81 numeric variables, of which nine are constant and were dropped. The
+timestamps run on one clock for 506\,s. Two logging gaps of 16.3\,s and
+8.4\,s separate three segments of 144, 4\,606, and 67 rows; the first
+segment is entirely nominal and the last entirely remote-control fault.
+There are four contiguous fault intervals: label~1 from 92.0 to 152.7\,s
+(608 rows), label~2 from 226.0 to 285.3\,s (594 rows), label~3 from 335.0
+to 383.1\,s (482 rows), and label~4 from 430.9 to 506.1\,s (670 rows).
+
+\emph{Check of the label meanings.} The data set's authors describe four
+simulated failures in the order GPS, accelerometer, engine, and remote
+control. The raw signals agree with labels 1 to 4 in that order. During
+label~1 the reported satellite count drops from 10 to 3. During label~2
+all three accelerometer channels are constant. During label~3 the ground
+speed is zero, the altitude estimate is at ground level, and the throttle
+output is saturated. During label~4 the vehicle descends.
+
+Table~\ref{tab:blocks} gives the ten time blocks and Table~\ref{tab:parts}
+the ten partitions. In every partition some training rows are later in
+time than the earliest test row, and at least one test block borders a
+training block. Blocks 0 and 7 are never used for testing; block 8 is used
+in six partitions. In seven partitions at least one fault interval in the
+test blocks contributes no rows to training. The median absolute
+autocorrelation of the 22 physical variables is 0.87 at 0.1\,s, 0.67 at
+1\,s, 0.46 at 10\,s, and 0.07 at 48\,s (one block).
+
+\begin{table}[h]\centering\small
+\caption{The ten time blocks and their label counts.}\label{tab:blocks}
+\T{S2_blocks}
+\end{table}
+
+\begin{table}[h]\centering\footnotesize
+\caption{The ten partitions. Validation blocks are the two blocks not listed.}\label{tab:parts}
+\resizebox{\linewidth}{!}{\T{S2_partitions}}
+\end{table}
+
+\section{Complete results of the blocked evaluation}
+Tables~\ref{tab:f1}--\ref{tab:miss} give all twelve models and all three
+input sets. In the stored result files the column \texttt{far\_class0} is
+the miss rate; the false-alarm rate was recovered from the same files as
+$2\times$\texttt{far\_macro}$-$\texttt{far\_class0} and checked against
+recomputed confusion matrices for the classical models (maximum difference
+$2\times10^{-16}$).
+
+\begin{table}[h]\centering\small\caption{F1 score (macro average).}\label{tab:f1}\T{S1_f1}\end{table}
+\begin{table}[h]\centering\small\caption{Area under the ROC curve.}\label{tab:auc}\T{S1_auc}\end{table}
+\begin{table}[h]\centering\small\caption{False-alarm rate.}\label{tab:far}\T{S1_far}\end{table}
+\begin{table}[h]\centering\small\caption{Miss rate.}\label{tab:miss}\T{S1_miss}\end{table}
+
+Table~\ref{tab:wins} compares the trained-circuit hybrid with every other
+model partition by partition (physical inputs). Each entry counts the
+partitions in which the hybrid is better / tied / worse.
+
+\begin{table}[h]\centering\small
+\caption{Trained-circuit hybrid against each other model: partitions won / tied / lost (physical inputs).}\label{tab:wins}
+\T{S5_wins}
+\end{table}
+
+\clearpage
+\section{Effect of the split design}
+Table~\ref{tab:split} repeats the classical experiments with a random
+stratified split of rows (70/15/15, ten seeds) and with the blocked split
+after deleting every training row within a given time gap of any test row.
+The average number of real training rows falls from 2\,890 (no gap) to
+2\,765, 2\,515, 2\,152, and 1\,734, so the gap analysis confounds reduced
+adjacency with reduced training data.
+
+\begin{table}[h]\centering\small
+\caption{Mean F1 of the classical models under different splits.}\label{tab:split}
+\T{S3_split_design}
+\end{table}
+
+\emph{Training on the past only.} Models were trained on blocks $0,\dots,k-1$
+and tested on block $k$ for $k=2,\dots,9$. Table~\ref{tab:fwd} gives the
+accuracy per test block with physical inputs and Table~\ref{tab:fwdpool}
+the pooled error rates. On block~4, the first block of the accelerometer
+fault, no model detects a single fault sample.
+
+\begin{table}[h]\centering\small
+\caption{Past-only training: accuracy on each test block (physical inputs).}\label{tab:fwd}
+\T{S3_forward}
+\end{table}
+\begin{table}[h]\centering\small
+\caption{Past-only training: results pooled over test blocks 2--9.}\label{tab:fwdpool}
+\T{S3_forward_pooled}
+\end{table}
+
+\emph{Holding out gap-delimited segments} is not informative: the two short
+segments contain a single class, and the long one leaves 211 training rows.
+
+\section{Detection by exposure to the fault event}
+For each partition, test fault samples were divided according to whether
+their fault interval also contributed rows to training. Table~\ref{tab:events}
+pools the ten partitions (14\,745 and 11\,645 sample-level decisions per
+input set across the five models).
+
+\begin{table}[h]\centering\small
+\caption{Fraction of fault samples detected.}\label{tab:events}
+\T{S4_events}
+\end{table}
+
+\clearpage
+\section{What each model received, and controls}
+\emph{Classical models:} all variables of the input set; all training rows
+after rebalancing (about 2\,900--3\,800, of which 2\,890 are real); default
+settings; fitted in under two seconds. \emph{Circuit:} the five variables
+ranked highest by mutual information on the training blocks; subset~A, 800
+rows (400 per class); 30 weights; 200 optimizer iterations.
+\emph{Hybrids and controls:} the same five variables plus 0 to 20 derived
+columns; subset~B, 800 rows disjoint from A; XGBoost with 100 trees.
+\emph{Trained-circuit hybrid:} its extra column comes from a circuit fitted
+on the labels of subset~A, so it draws on 1\,600 labeled rows, against 800
+for the controls. The validation blocks were not used. Subsets A and B are
+drawn from the rebalanced training set, in which 12\% of rows on average
+are synthetic, so they are disjoint but not independent.
+
+``Identical budget'' in the original submission meant the same partitions
+and test blocks for all models, and the same subset~B and XGBoost settings
+for the six hybrids. It did not mean equal samples, inputs, computation, or
+capacity across model families.
+
+Table~\ref{tab:fair} traces the difference between classical XGBoost and
+the ``XGB only'' control step by step, and adds two label-informed
+classical controls. With all variables, the five selected variables are
+accumulating quantities whose test values fall outside the training range
+in 30\% of test rows on average; the ``XGB only'' control then predicts a
+single class in seven of ten partitions.
+
+\begin{table}[h]\centering\small
+\caption{Mean F1 (standard deviation) for the fairness decomposition and added controls.}\label{tab:fair}
+\T{S5_fairness}
+\end{table}
+
+\section{Sensitivity to synthetic oversampling}
+SMOTETomek was applied after the split, to training rows only.
+Table~\ref{tab:res} repeats the classical experiments without it.
+Table~\ref{tab:d2} repeats the circuit and hybrid experiments on real rows
+only (physical inputs; ten new circuit fits). Table~\ref{tab:syn}
+characterizes the synthetic rows. On average 9\% of them (up to 23\%) have
+a magnetic-field magnitude outside the central 98\% range of the real
+training rows, where 2\% would be expected. We make no claim that the
+synthetic samples are physically plausible.
+
+\begin{table}[h]\centering\footnotesize
+\caption{Classical models with and without SMOTETomek (means over ten partitions).}\label{tab:res}
+\T{S6_resampling}
+\end{table}
+\begin{table}[h]\centering\footnotesize
+\caption{Circuit and hybrids without synthetic rows (physical inputs).}\label{tab:d2}
+\resizebox{\linewidth}{!}{\T{S6_dru_no_resampling}}
+\end{table}
+\begin{table}[h]\centering\footnotesize
+\caption{Synthetic rows in the rebalanced training sets (physical inputs).}\label{tab:syn}
+\resizebox{\linewidth}{!}{\T{S6_synthetic}}
+\end{table}
+
+\clearpage
+\section{Cost of the simulated circuit}
+Table~\ref{tab:cost} reports measurements on the classical computer that
+ran the simulation. They do not describe a quantum processor. On hardware,
+each expectation value would be estimated from repeated circuit runs
+affected by gate and readout noise, with queueing and communication delays;
+none of these was measured. The 30 circuit fits of the original study took
+117 minutes in total. A second measurement of the same fit gave 234\,s and
+1.4\,ms per sample; all other values were identical.
+
+\begin{table}[h]\centering\small
+\caption{Measured cost of one circuit fit and of inference in simulation.}\label{tab:cost}
+\T{S7_cost}
+\end{table}
+
+\section{Secondary experiment on the engine fault}
+A one-fault task (nominal versus engine fault) was run with twenty time
+blocks and XGBoost. In nine of the ten random assignments at least one of
+the training, validation, and test sets contained no fault sample, and
+those assignments were skipped; one remained (seed~1). On that single
+partition F1 was 0.93 with the \emph{all} and \emph{reduced} inputs and 0.43
+with \emph{physical} inputs, where every test row was labeled nominal
+although the ROC AUC stayed at 0.96. A single partition supports no
+estimate and is reported only as an anecdote.
+
+\section{Reproducibility}
+Every stored result that was rerun was reproduced exactly: all 150
+classical runs, the 30 runs of the five-variable XGBoost control, and one
+circuit fit (seed~0, \emph{physical} inputs; Table~\ref{tab:cost}). The other
+29 circuit fits of the main study, and the hybrid variants that depend on
+them, were not rerun. The circuit and hybrid rows of
+Tables~\ref{tab:f1}--\ref{tab:miss} and the comparisons in
+Table~\ref{tab:wins} are therefore computed from the stored per-partition
+files of the original study; the false-alarm rate in those rows is derived
+arithmetically from two stored columns. All other tables come from analyses
+executed for this revision. Scripts, per-partition outputs, software versions,
+and commands are in the public repository
+\url{https://github.com/Carlosandp/TLM-UAV-Quantum-Anomaly-Detection}
+(folder \texttt{revision/}).
+\end{document}

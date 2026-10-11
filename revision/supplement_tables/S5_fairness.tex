@@ -1,0 +1,13 @@
+\begin{tabular}{p{0.5\linewidth}ccc}
+\toprule
+Configuration & all & reduced & physical \\
+\midrule
+Classical XGBoost: all variables of the set, all training rows & 0.52 (0.14) & 0.54 (0.14) & 0.52 (0.13) \\
+Same, restricted to the five selected variables & 0.42 (0.16) & 0.43 (0.22) & 0.55 (0.13) \\
+Same, restricted to the 800-row subset B & 0.35 (0.10) & 0.47 (0.22) & 0.53 (0.15) \\
+Same, with the hybrid learning rate (this is the ``XGB only'' control) & 0.35 (0.10) & 0.47 (0.22) & 0.52 (0.15) \\
+XGB + output of logistic regression fitted on subset A & 0.36 (0.13) & 0.46 (0.21) & 0.48 (0.17) \\
+XGB + output of a 29-weight MLP fitted on subset A & 0.34 (0.08) & 0.44 (0.20) & 0.51 (0.17) \\
+XGB + trained DRU output (stored result) & 0.51 (0.22) & 0.53 (0.19) & 0.56 (0.14) \\
+\bottomrule
+\end{tabular}

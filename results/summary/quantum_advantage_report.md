@@ -1,3 +1,22 @@
+> **Notice (October 2026) — superseded, kept for traceability.**
+> This file is generated automatically by section 14 of the notebook. Three
+> things in it should not be relied on:
+>
+> 1. The table headed **"FAR (normal)"** contains the *miss rate* (fault
+>    samples classified as normal), not the false-alarm rate. The conventional
+>    false-alarm rate is `2 * far_macro - far_class0` in the per-run files.
+> 2. Section 3 compares the trained-DRU hybrid with three of the five controls
+>    on mean F1 only. Partition by partition the ordering is not consistent
+>    (for example, 5 wins in 10 against the untrained-DRU control), and the
+>    differences are smaller than the spread.
+> 3. The conclusion that the learned quantum representation "carries
+>    information not captured by" classical expansions is **not supported**.
+>    The trained-DRU hybrid also receives 800 additional labeled rows through
+>    the circuit, which the controls do not.
+>
+> No quantum advantage is demonstrated. Corrected tables and the additional
+> analyses are in `revision/` and summarized in the README.
+
 # Quantum Advantage Report — TLM:UAV
 
 **Protocol:** B2 group-aware, K=10 blocks, 10 seeds, binary task.

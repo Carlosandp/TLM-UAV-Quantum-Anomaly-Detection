@@ -1,0 +1,9 @@
+Reproduction run started 2026-10-10 14:27:36 -0500
+python 3.12.10 numpy 2.4.4 pandas 2.3.3 scikit-learn 1.8.0 imbalanced-learn 0.14.1 xgboost 3.2.0 qiskit 2.3.0 scipy 1.17.1 qdr 0.1.0
+rev_classical.py | exit=0 | 411 s
+rev_events.py | exit=0 | 48 s
+rev_dru.py d1 | exit=0 | 250 s
+rev_dru.py d2 | exit=0 | 781 s
+rev_figures.py | exit=0 | 2 s
+rev_supplement_tables.py | exit=0 | 0 s
+finished 2026-10-10 14:52:47 -0500

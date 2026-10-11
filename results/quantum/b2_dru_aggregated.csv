@@ -1,0 +1,4 @@
+mode,balanced_acc_mean,balanced_acc_std,f1_macro_mean,f1_macro_std,mcc_mean,mcc_std,roc_auc_ovr_mean,roc_auc_ovr_std,pr_auc_mean,pr_auc_std,accuracy_mean,accuracy_std,far_class0_mean,far_class0_std,dr_anomaly_mean,dr_anomaly_std,train_time_s_mean,train_time_s_std
+full,0.6447,0.1919,0.5684,0.2155,0.3184,0.3127,0.7566,0.2599,0.8409,0.1329,0.5966,0.1969,0.3797,0.3581,0.6203,0.3581,232.3924,4.7219
+no_proxy_loose,0.5546,0.1948,0.51,0.1624,0.1519,0.3265,0.5748,0.3132,0.6661,0.2723,0.5637,0.1436,0.5334,0.2522,0.4666,0.2522,230.3539,3.8709
+no_proxy_strict,0.5354,0.2067,0.5096,0.2027,0.0778,0.3747,0.5567,0.2749,0.6133,0.212,0.5323,0.2105,0.5085,0.1872,0.4915,0.1872,233.9298,4.4133

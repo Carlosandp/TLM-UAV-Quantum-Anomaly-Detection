@@ -1,0 +1,20 @@
+\begin{tabular}{p{0.45\linewidth}p{0.48\linewidth}}
+\toprule
+Quantity & Value \\
+\midrule
+Qubits / trainable weights / circuit depth & 5 / 30 / 16 \\
+Gates & 10 rx, 10 ry, 10 rz, 10 cx \\
+Simulator & exact state vector (Qiskit StatevectorEstimator), no shots, no noise \\
+Host & Apple M5, 10 cores, 16 GB RAM; macOS-27.0.1-arm64-arm-64bit \\
+Training rows per fit & 800 \\
+Optimizer iterations (COBYLA) & 200 \\
+Loss evaluations per fit (measured) & 328 \\
+Simulated circuit runs per fit (measured) & 262\,400 \\
+Wall-clock time per fit (measured; stored run) & 227.8 s; 229.9 s \\
+Training loss, first / last evaluation & 1.0072 / 0.6327 \\
+Inference, one sample, circuit (median / 95th percentile) & 1.28 / 1.48 ms \\
+Inference, one sample, hybrid (median / 95th percentile) & 1.62 / 1.86 ms \\
+Inference, one sample, XGBoost alone (median) & 0.25 ms \\
+Stored result reproduced (F1, seed 0, physical-only) & 0.1362 vs. 0.1362 \\
+\bottomrule
+\end{tabular}

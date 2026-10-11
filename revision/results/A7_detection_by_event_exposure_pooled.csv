@@ -1,0 +1,21 @@
+mode,model,group,n,detected,detection_rate
+full,LogReg,event partly seen in training,2949,2725,0.924
+full,LogReg,event unseen in training,2329,409,0.176
+full,MLP,event partly seen in training,2949,2768,0.939
+full,MLP,event unseen in training,2329,613,0.263
+full,RandomForest,event partly seen in training,2949,2867,0.972
+full,RandomForest,event unseen in training,2329,58,0.025
+full,SVM-RBF,event partly seen in training,2949,2323,0.788
+full,SVM-RBF,event unseen in training,2329,195,0.084
+full,XGBoost,event partly seen in training,2949,2829,0.959
+full,XGBoost,event unseen in training,2329,66,0.028
+no_proxy_strict,LogReg,event partly seen in training,2949,2449,0.83
+no_proxy_strict,LogReg,event unseen in training,2329,91,0.039
+no_proxy_strict,MLP,event partly seen in training,2949,2608,0.884
+no_proxy_strict,MLP,event unseen in training,2329,25,0.011
+no_proxy_strict,RandomForest,event partly seen in training,2949,2752,0.933
+no_proxy_strict,RandomForest,event unseen in training,2329,66,0.028
+no_proxy_strict,SVM-RBF,event partly seen in training,2949,1902,0.645
+no_proxy_strict,SVM-RBF,event unseen in training,2329,275,0.118
+no_proxy_strict,XGBoost,event partly seen in training,2949,2609,0.885
+no_proxy_strict,XGBoost,event unseen in training,2329,78,0.033
